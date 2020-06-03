@@ -1,0 +1,39 @@
+Question Link:https://leetcode.com/explore/featured/card/june-leetcoding-challenge/539/week-1-june-1st-june-7th/3349/
+
+class Solution:
+    def twoCitySchedCost(self, costs: List[List[int]]) -> int:
+        l=len(costs)
+        s=0
+        h1=[]
+        h2=[]
+        a=0
+        b=0
+        for i in range(l):
+            if(costs[i][0]<costs[i][1]):
+                a=a+1
+                h1.append(costs[i][1]-costs[i][0])
+                s=s+costs[i][0]
+            else:
+                b=b+1
+                h2.append(costs[i][0]-costs[i][1])
+                s=s+costs[i][1]
+        h1.sort()
+        h2.sort()
+        l=l/2
+        j=0
+        if(a==b):
+            return s
+        else:
+            if(a>b):
+                c=a-l
+                while(c):
+                    s=s+h1[j]
+                    j=j+1
+                    c=c-1
+            elif(b>a):
+                c=b-l
+                while(c):
+                    s=s+h2[j]
+                    j=j+1
+                    c=c-1
+            return s
