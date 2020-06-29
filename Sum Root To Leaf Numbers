@@ -1,0 +1,14 @@
+class Solution {
+    public int sumNumbers(TreeNode root) {
+		return dfsSum(root,0);
+	}
+
+	public int dfsSum(TreeNode root, int sum) {
+		if (root == null)
+			return 0;
+		int newSum = sum * 10 + root.val;
+		if (root.right == null && root.left == null)
+			return newSum;
+		return dfsSum(root.left,newSum) + dfsSum(root.right,newSum);
+	}
+};
