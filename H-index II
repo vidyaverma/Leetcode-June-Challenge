@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int hIndex(vector<int>& A) {
+        int ans = 0;
+      int low = 0;
+      int n = A.size();
+      int high = n - 1;
+      if(A.size() == 0) return 0;
+      while(low <= high){
+         int mid = low + (high - low) / 2;
+         if(A[mid] == A.size() - mid){
+            return A[mid];
+         }
+         else if(A[mid] > (n - mid)){
+            high = mid - 1;
+         }
+         else low = mid + 1;
+      }
+      return n - (high + 1);
+   }
+        
+    };
